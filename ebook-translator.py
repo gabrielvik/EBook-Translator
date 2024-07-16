@@ -22,7 +22,7 @@ def translate_text(text, source_lang, target_lang):
         return text
 
 def should_translate(text):
-    if text.isdigit() or len(text) <= 3:
+    if text.isdigit() or len(text) <= 2:
         return False
     if text.upper() in ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", 
                         "XI", "XII", "XIII", "XIV", "XV", "XVI", "XVII", "XVIII", "XIX", "XX"]:
