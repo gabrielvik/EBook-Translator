@@ -5,7 +5,6 @@ from bs4 import BeautifulSoup, NavigableString
 import openai
 
 def translate_text(text, source_lang, target_lang):
-    print(f"Translating: {text}")
     try:
         response = openai.ChatCompletion.create(
             model="gpt-3.5-turbo",
@@ -14,10 +13,9 @@ def translate_text(text, source_lang, target_lang):
                 {"role": "user", "content": f"Translate this text from {source_lang} to {target_lang}: {text}"}
             ],
             max_tokens=2048,
-            temperature=0.7
+            temperature=0.6
         )
         translated_text = response.choices[0].message['content'].strip()
-        print(f"Translated text: {translated_text}")
         return translated_text
     except Exception as e:
         print(f"Error during translation for text '{text}': {str(e)}")
@@ -59,9 +57,9 @@ def main():
     if not openai.api_key:
         print("Error: OPENAI_API_KEY environment variable not set.")
         return
-    file_path = input("Enter EPub file path: ")
-    source_lang = input("Enter source language code (e.g., 'en'): ")
-    target_lang = input("Enter target language code (e.g., 'sv'): ")  # Changed example to 'sv' for Swedish
+    file_path = input("Enter EPUB file path: ")
+    source_lang = input("Enter source language code (e.g., 'English'): ")
+    target_lang = input("Enter target language code (e.g., 'Swedish'): ")
     translate_epub(file_path, source_lang, target_lang)
 
 if __name__ == "__main__":
