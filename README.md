@@ -1,5 +1,6 @@
 # EBook-Translator
-Translates a book with OpenAI API
+
+## **Translates a book with OpenAI API**
 
 Packages
 ```sh
