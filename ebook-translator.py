@@ -7,13 +7,13 @@ import openai
 def translate_text(text, source_lang, target_lang):
     try:
         response = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",
+            model="gpt-4o-mini",
             messages=[
-                {"role": "system", "content": "You are a book translator. You are to translate a snippet of a book into a given language. Respond ONLY with the translated text."},
+                {"role": "system", "content": "You are a book translator. You are to translate a snippet of a book into a given language. Respond only with the translated text."},
                 {"role": "user", "content": f"Translate this text from {source_lang} to {target_lang}: {text}"}
             ],
             max_tokens=2048,
-            temperature=0.6
+            temperature=0.5
         )
         translated_text = response.choices[0].message['content'].strip()
         return translated_text
@@ -23,9 +23,6 @@ def translate_text(text, source_lang, target_lang):
 
 def should_translate(text):
     if text.isdigit() or len(text) <= 2:
-        return False
-    if text.upper() in ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", 
-                        "XI", "XII", "XIII", "XIV", "XV", "XVI", "XVII", "XVIII", "XIX", "XX"]:
         return False
     return True
 
